@@ -44,7 +44,7 @@ int main( argc, argv )
 	   and print out the returned string  until fgets returns a value 0
 	   fgets will return 0 if ^d is entered */
 
-	while ( fgets( bufferGoingOut, sizeof( buf ), stdin ) != 0 ) 
+	while ( fgets( bufferGoingOut, sizeof( bufferGoingOut ), stdin ) != 0 ) 
 	{
 		bufferGoingOut[ LINELEN ] = '\0';		/* ensure line null terminated	*/
 		outchars = strlen( bufferGoingOut );
@@ -77,7 +77,7 @@ int createSocketConnection(
 	struct sockaddr_in serverAddress;	/* will hold a full Internet endpoint address*/
 	/* full address comprises address family, port number and IP address */
 	int socketConnection ;			/* socket descriptor */
-	bzero( (char *)&serverAddrss, sizeof( serverAddress ) );  /* initialise sin with zeros */
+	bzero( (char *)&serverAddress, sizeof( serverAddress ) );  /* initialise sin with zeros */
 	serverAddress.sin_family = AF_INET;     /* place address family in sin.sin_family */
 
 	/* function atoi converts port number from character string to integer*/
