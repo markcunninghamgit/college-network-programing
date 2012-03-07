@@ -20,8 +20,8 @@ int main( argc, argv )
 {
 	char *host;  				/* will hold the host name */ 
 	char *service; 			/* will hold the port number */ 
-	char lineBuffer[ LINELEN+1 ];		/* buffer for one line of text	*/
-	char bufin [ LINELEN+1 ] ;		/* buffer for reading line of test */
+	char bufferGoingOut[ LINELEN+1 ];		/* buffer for one line of text	*/
+	char bufferComingIn [ LINELEN+1 ] ;		/* buffer for reading line of test */
 	int socketConnection;				/* socket descriptor, read count*/
 	int n;
 	int outchars=	LINELEN, inchars=LINELEN;      /* max characters sent & received	*/ 
@@ -44,14 +44,14 @@ int main( argc, argv )
 	   and print out the returned string  until fgets returns a value 0
 	   fgets will return 0 if ^d is entered */
 
-	while ( fgets( buf, sizeof( buf ), stdin ) != 0 ) 
+	while ( fgets( bufferGoingOut, sizeof( buf ), stdin ) != 0 ) 
 	{
-		buf[ LINELEN ] = '\0';		/* ensure line null terminated	*/
-		outchars = strlen( buf );
+		bufferGoingOut[ LINELEN ] = '\0';		/* ensure line null terminated	*/
+		outchars = strlen( bufferGoingOut );
 		/* place socket write statement here  to write data from buf */
 		/* read it back  - read returns with n holding the no. of bytes read, or 0 for end-of-file or negative for error*/
 		/* place socket read statement here to read data into bufin  use n to hold the nujmber of characters read*/
-		bufin[ n ] = '\0';  		/* ensure bufin has a string terminator null */
+		bufferComingIn[ n ] = '\0';  		/* ensure bufin has a string terminator null */
 
 		if ( n < 0 )
 		{
@@ -59,7 +59,7 @@ int main( argc, argv )
 			exit( 1 );
 		}
 
-		fputs( bufin, stdout );
+		fputs( bufferComingIn, stdout );
 	}
 }
 
